@@ -67,6 +67,7 @@ export default {
             n: null,
             file: null,
             loading: true,
+            processing: false, // 添加处理状态
             type: 'MP4',
             typeList: {
                 MP4: 'MP4',
@@ -99,6 +100,17 @@ export default {
         handleChange({ target }) {
             if (target.files.length) {
                 this.file = target.files[0];
+            }
+        },
+        // 添加 handleClick 方法
+        handleClick() {
+            if (this.file) {
+                this.processing = true;
+                this.convert().finally(() => {
+                    this.processing = false;
+                });
+            } else {
+                this.$noty.error('请先选择文件');
             }
         },
         async convert() {

@@ -1,5 +1,5 @@
 /*
-  X-Frame-Options: DENY
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: no-referrer
+  Access-Control-Allow-Origin: *
+  X-Frame-Options: SAMEORIGIN
   X-XSS-Protection: 1; mode=block
+  Cache-Control: public, max-age=3600
