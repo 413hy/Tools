@@ -3,6 +3,25 @@ import env from './env';
 const keywords = 'YangHE のTools,在线工具,工具集合,工具箱,在线转换';
 
 export default {
+    env: env,
+    server: {
+        // https:
+        //     process.env.NODE_ENV === 'development'
+        //         ? {
+        //               key: fs.readFileSync(
+        //                   path.resolve(__dirname, './ssl/privkey.pem')
+        //               ),
+        //               cert: fs.readFileSync(
+        //                   path.resolve(__dirname, './ssl/server.pem')
+        //               )
+        //           }
+        //         : undefined
+    },
+    serverMiddleware: ['~/server-middleware/headers'],
+
+    /*
+     ** Headers of the page
+     */
     head: {
         title: `YangHE のTools - 一个轻量的工具集合`,
         meta: [
@@ -62,20 +81,6 @@ export default {
         ]
     },
 
-    server: {
-        // https:
-        //     process.env.NODE_ENV === 'development'
-        //         ? {
-        //               key: fs.readFileSync(
-        //                   path.resolve(__dirname, './ssl/privkey.pem')
-        //               ),
-        //               cert: fs.readFileSync(
-        //                   path.resolve(__dirname, './ssl/server.pem')
-        //               )
-        //           }
-        //         : undefined
-    },
-    serverMiddleware: ['~/server-middleware/headers'],
     /*
      ** Customize the progress-bar color
      */
