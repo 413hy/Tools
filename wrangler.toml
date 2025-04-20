@@ -12,8 +12,13 @@ bucket = "./dist"
 entry-point = "workers-site"
 
 [build]
-command = "rm -rf node_modules package-lock.json && npm install --legacy-peer-deps && npm run generate"
+command = "npm run generate"
 output_dir = "dist"
 
 [build.environment]
 NODE_VERSION = "18.17.1"
+NODE_ENV = "production"
+NPM_VERSION = "9.6.7"
+
+[vars]
+ENVIRONMENT = "production"
