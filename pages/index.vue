@@ -3,28 +3,17 @@
         <Welcome />
         <Search v-model="searchText" @enter="enterFirst">
             <template slot-scope="data">
-                <nuxt-link
-                    v-for="(tool, index) in data.data"
-                    v-show="showBtn(tool)"
-                    :key="index"
-                    :target="$store.state.setting.inNewTab ? '_blank' : '_self'"
-                    :to="tool.path"
-                    class="nya-btn"
-                    v-if="!tool.external"
-                >
-                    {{ tool.name }}
-                </nuxt-link>
-                <a
-                    v-for="(tool, index) in data.data"
-                    v-show="showBtn(tool) && tool.external"
-                    :key="'ext-'+index"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    :href="tool.path"
-                    class="nya-btn"
-                >
-                    {{ tool.name }}
-                </a>
+                <template v-if="shouldShowTools">
+                    <nuxt-link
+                        v-for="(tool, index) in filteredTools(data.data)"
+                        :key="index"
+                        :target="$store.state.setting.inNewTab ? '_blank' : '_self'"
+                        :to="tool.path"
+                        class="nya-btn"
+                    >
+                        {{ tool.name }}
+                    </nuxt-link>
+                </template>
             </template>
         </Search>
         
@@ -200,6 +189,9 @@ export default {
         },
         showBtn(tool) {
             return this.$store.state.setting.hide.indexOf(tool.path) === -1;
+        },
+        filteredTools(tools) {
+            return tools.filter(tool => this.showBtn(tool));
         }
     }
 };
