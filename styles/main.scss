@@ -404,6 +404,45 @@ fieldset {
     margin-right: 15px;
 }
 
+.navbar {
+    .logo {
+        img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+    }
+}
+
+.nya-hide-scroll{
+    &::-webkit-scrollbar {
+        width: 0 !important;
+    }
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+fieldset {
+    min-inline-size: auto;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.ml-15 {
+    margin-left: 15px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
 img {
     max-width: 100%;
 }

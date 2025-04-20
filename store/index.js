@@ -2,34 +2,34 @@ import env from '../env';
 
 export const state = () => ({
     dark: false,
+    setting: {
+        bg: {
+            type: 'custom',
+            customUrl: 'https://yhedesk.dpdns.org/nz_001webp',
+            blur: 0,
+            opacity: 100,
+            transparentEl: false,
+            upload: {
+                url: '',
+                deleteUrl: ''
+            }
+        },
+        hideNotice: true,
+        hidePay: true,
+        inNewTab: true,
+        animations: true,
+        hide: [],
+        favorites: [],
+        hideCategory: false,
+        css: '',
+        js: ''
+    },
     noticeId: false,
     inFrames: false,
     currentTool: null,
     disabledMouseWheel: false,
     ads: true,
     loaded: false,
-    setting: {
-        animations: true,
-        hide: [],
-        favorites: [],
-        hideCategory: false,
-        hidePay: false,
-        hideNotice: false,
-        css: '',
-        js: '',
-        inNewTab: null,
-        bg: {
-            type: 'none',
-            upload: {
-                url: '',
-                deleteUrl: ''
-            },
-            customUrl: '',
-            blur: 4,
-            opacity: 50,
-            transparentEl: true
-        }
-    },
     globalLoading: false,
     welcome: true,
     isMobile: {},

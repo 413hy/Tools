@@ -77,9 +77,9 @@ module.exports = {
         ],
         link: [
             {
-                rel: 'shortcut icon',
+                rel: 'icon',
                 type: 'image/x-icon',
-                href: '/favicon.ico'
+                href: 'https://yhedesk.dpdns.org/testwebp'
             }
         ]
     },
