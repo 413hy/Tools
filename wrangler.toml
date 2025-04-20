@@ -8,8 +8,9 @@ bucket = "./dist"
 entry-point = "workers-site"
 
 [build]
-command = "npm run generate"
+command = "pnpm install --no-frozen-lockfile && pnpm run generate"
 output_dir = "dist"
 
 [build.environment]
 NODE_VERSION = "16"
+PNPM_VERSION = "8.7.1"
