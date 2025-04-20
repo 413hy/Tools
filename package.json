@@ -65,7 +65,9 @@
         "vue-sweetalert2": "^2.1.5",
         "vue2-datepicker": "^2.13.4",
         "vuejs-noty": "^0.1.4",
-        "vuex-persistedstate": "^2.7.1"
+        "vuex-persistedstate": "^2.7.1",
+        "@cloudflare/kv-asset-handler": "^0.3.0",
+        "@cloudflare/wrangler": "^3.0.0"
     },
     "devDependencies": {
         "all-contributors-cli": "^6.24.0",

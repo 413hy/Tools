@@ -3,6 +3,10 @@ type = "webpack"
 account_id = ""
 workers_dev = true
 
+kv_namespaces = [
+  { binding = "TOOLS_DATA", id = "", preview_id = "" }
+]
+
 [site]
 bucket = "./dist"
 entry-point = "workers-site"
