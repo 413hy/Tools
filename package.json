@@ -12,7 +12,8 @@
         "lint": "eslint --ext .js,.vue --ignore-path .eslintignore .",
         "lintfix": "eslint --fix --ext .js,.vue --ignore-path .eslintignore .",
         "contributors:add": "all-contributors add",
-        "contributors:generate": "all-contributors generate"
+        "contributors:generate": "all-contributors generate",
+        "deploy": "npm run generate && npx wrangler deploy"
     },
     "dependencies": {
         "@ffmpeg/core": "^0.10.0",
@@ -67,7 +68,7 @@
         "vuejs-noty": "^0.1.4",
         "vuex-persistedstate": "^2.7.1",
         "@cloudflare/kv-asset-handler": "^0.3.0",
-        "@cloudflare/wrangler": "^3.0.0"
+        "wrangler": "^3.22.1"
     },
     "devDependencies": {
         "all-contributors-cli": "^6.24.0",
