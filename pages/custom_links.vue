@@ -38,6 +38,34 @@ export default {
                 url: ''
             }
         };
+    },
+    methods: {
+        addLink() {
+            if (!this.newLink.name || !this.newLink.url) {
+                this.$noty.error('网站名称和地址不能为空');
+                return;
+            }
+            if (
+                !this.newLink.url.startsWith('http://') &&
+                !this.newLink.url.startsWith('https://')
+            ) {
+                this.$noty.error('网站地址必须以 http:// 或 https:// 开头');
+                return;
+            }
+            const customLinks = this.$store.state.customLinks || [];
+            customLinks.push({
+                name: this.newLink.name,
+                path: this.newLink.url
+            });
+            this.$store.commit('SET_STORE', {
+                key: 'customLinks',
+                value: customLinks
+            });
+            // 清空输入
+            this.newLink.name = '';
+            this.newLink.url = '';
+            this.$noty.success('添加成功');
+        }
     }
 };
 </script>

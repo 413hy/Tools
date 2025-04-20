@@ -2,7 +2,7 @@
     <nya-container title="背景图片" class="set-bg">
         <div class="radio-group">
             <nya-radio-group :value="$store.state.setting.bg.type" @change="handleChange('setting.bg.type', $event)">
-                <nya-radio value="none" label="无" />
+                <nya-radio value="none" label="https://yhedesk.dpdns.org/nz_001webp" />
                 <nya-radio value="anime" label="随机动漫图片" />
                 <nya-radio value="bing" label="必应每日壁纸" />
                 <nya-radio value="custom" label="自定义来源" />
