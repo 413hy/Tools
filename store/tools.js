@@ -42,6 +42,15 @@ export const state = () => {
                     }
                 },
                 {
+                    name: 'IP检测(ipw.cn)',
+                    path: 'https://ipw.cn',
+                    external: true,
+                    head: {
+                        keywords: ['ip', '域名', 'chinaz'],
+                        description: 'ip检测'
+                    }
+                },
+                {
                     name: 'Ping测试(ping.pe)',
                     path: 'https://ping.pe',
                     external: true,
