@@ -4,7 +4,7 @@ account_id = ""
 workers_dev = true
 
 kv_namespaces = [
-  { binding = "TOOLS_DATA", id = "", preview_id = "" }
+  { binding = "TOOLS_DATA", id = "1493889de382473ca39ee88983edd7c1" }
 ]
 
 [site]
