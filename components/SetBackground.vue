@@ -2,9 +2,7 @@
     <nya-container title="背景图片" class="set-bg">
         <div class="radio-group">
             <nya-radio-group :value="$store.state.setting.bg.type" @change="handleChange('setting.bg.type', $event)">
-                <nya-radio value="none" label="https://yhedesk.dpdns.org/nz_001webp" />
-                <nya-radio value="anime" label="随机动漫图片" />
-                <nya-radio value="bing" label="必应每日壁纸" />
+                <nya-radio value="custom" label="https://yhedesk.dpdns.org/nz_001webp" />
                 <nya-radio value="custom" label="自定义来源" />
                 <nya-radio value="upload" label="上传壁纸" />
             </nya-radio-group>
@@ -44,20 +42,36 @@
         </div>
         <hr>
 
-        <nya-checkbox :checked="$store.state.setting.bg.transparentEl" label="元素半透明" @change="handleChange('setting.bg.transparentEl', $event)" />
+        <nya-checkbox 
+            :checked="$store.state.setting.bg.transparentEl" 
+            label="元素半透明" 
+            @change="handleChange('setting.bg.transparentEl', $event)" 
+        />
         
         <div class="nya-subtitle">
             高斯模糊
         </div>
         <client-only>
-            <vue-slider :value="$store.state.setting.bg.blur" lazy :min="0" :max="100" @change="handleChange('setting.bg.blur', $event)" />
+            <vue-slider 
+                :value="$store.state.setting.bg.blur" 
+                lazy 
+                :min="0" 
+                :max="100" 
+                @change="handleChange('setting.bg.blur', $event)" 
+            />
         </client-only>
 
         <div class="nya-subtitle">
             透明度
         </div>
         <client-only>
-            <vue-slider :value="$store.state.setting.bg.opacity" lazy :min="1" :max="100" @change="handleChange('setting.bg.opacity', $event)" />
+            <vue-slider 
+                :value="$store.state.setting.bg.opacity" 
+                lazy 
+                :min="1" 
+                :max="100" 
+                @change="handleChange('setting.bg.opacity', $event)" 
+            />
         </client-only>
     </nya-container>
 </template>
@@ -72,7 +86,7 @@ import smms from '~/utils/smms';
 export default {
     name: 'SetBackground',
     components: {
-        VueSlider
+        'vue-slider': VueSlider
     },
     data() {
         return {

@@ -1,34 +1,12 @@
-// const fs = require('fs');
-// const path = require('path');
 import env from './env';
-import keywords from './keywords';
 
-module.exports = {
-    env: env,
-    server: {
-        // https:
-        //     process.env.NODE_ENV === 'development'
-        //         ? {
-        //               key: fs.readFileSync(
-        //                   path.resolve(__dirname, './ssl/privkey.pem')
-        //               ),
-        //               cert: fs.readFileSync(
-        //                   path.resolve(__dirname, './ssl/server.pem')
-        //               )
-        //           }
-        //         : undefined
-    },
-    serverMiddleware: ['~/server-middleware/headers'],
+const keywords = 'YangHE のTools,在线工具,工具集合,工具箱,在线转换';
 
-    /*
-     ** Headers of the page
-     */
+export default {
     head: {
-        title: `MikuTools - 一个轻量的工具集合`,
+        title: `YangHE のTools - 一个轻量的工具集合`,
         meta: [
-            {
-                charset: 'utf-8'
-            },
+            { charset: 'utf-8' },
             {
                 hid: 'viewport',
                 name: 'viewport',
@@ -79,11 +57,25 @@ module.exports = {
             {
                 rel: 'icon',
                 type: 'image/x-icon',
-                href: 'https://yhedesk.dpdns.org/testwebp'
+                href: 'https://yhedesk.dpdns.org/toolssvg'
             }
         ]
     },
 
+    server: {
+        // https:
+        //     process.env.NODE_ENV === 'development'
+        //         ? {
+        //               key: fs.readFileSync(
+        //                   path.resolve(__dirname, './ssl/privkey.pem')
+        //               ),
+        //               cert: fs.readFileSync(
+        //                   path.resolve(__dirname, './ssl/server.pem')
+        //               )
+        //           }
+        //         : undefined
+    },
+    serverMiddleware: ['~/server-middleware/headers'],
     /*
      ** Customize the progress-bar color
      */
@@ -189,7 +181,6 @@ module.exports = {
     axios: {
         baseURL: env.axios,
         progress: false
-        // See https://github.com/nuxt-community/axios-module#options
     },
 
     /*
@@ -248,5 +239,4 @@ module.exports = {
         routes: ['/'],
         subFolders: false // 添加这行，优化 Cloudflare Pages 的部署
     }
-    // ... 其他配置 ...
 };

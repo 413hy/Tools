@@ -1,18 +1,13 @@
 import env from '../env';
 
 export const state = () => ({
-    dark: false,
     setting: {
         bg: {
             type: 'custom',
             customUrl: 'https://yhedesk.dpdns.org/nz_001webp',
             blur: 0,
             opacity: 100,
-            transparentEl: false,
-            upload: {
-                url: '',
-                deleteUrl: ''
-            }
+            transparentEl: true
         },
         hideNotice: true,
         hidePay: true,
