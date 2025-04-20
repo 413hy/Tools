@@ -208,6 +208,15 @@ module.exports = {
                 },
                 autoprefixer: {}
             }
+        },
+        // 添加 sass-loader 配置
+        loaders: {
+            scss: {
+                implementation: require('sass'),
+                sassOptions: {
+                    fiber: false
+                }
+            }
         }
     },
     manifest: {
@@ -233,5 +242,11 @@ module.exports = {
     router: {
         prefetchLinks: false,
         middleware: ['getCurrentTool', 'baidupush']
+    },
+    generate: {
+        fallback: 'index.html',
+        routes: ['/'],
+        subFolders: false // 添加这行，优化 Cloudflare Pages 的部署
     }
+    // ... 其他配置 ...
 };

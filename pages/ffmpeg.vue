@@ -11,12 +11,12 @@
                     @change="handleChange"
                 />
                 <button
-                    @click="convert"
                     type="button"
-                    class="nya-btn"
-                    :disabled="loading || !file"
+                    class="btn"
+                    :disabled="processing"
+                    @click="handleClick"
                 >
-                    {{ loading ? '加载中' : '开始转换' }}
+                    Convert
                 </button>
             </div>
             <div class="typeList">
@@ -42,10 +42,9 @@
                 <li>如果转换时间过长请使用其他浏览器尝试，推荐使用Chrome</li>
                 <li>
                     基于<a
-                        target="_blank"
                         href="https://github.com/ffmpegwasm/ffmpeg.wasm"
-                        >ffmpeg.wasm</a
-                    >
+                        target="_blank"
+                    >ffmpeg.wasm</a>
                 </li>
             </ul>
         </nya-container>
@@ -56,10 +55,10 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 const ffmpeg = createFFmpeg({
     log: true,
-    corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js',
+    corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js'
 });
 export default {
-    name: 'ffmpeg',
+    name: 'Ffmpeg', // Changed from ffmpeg to PascalCase
     head() {
         return this.$store.state.currentTool.head;
     },
@@ -73,21 +72,24 @@ export default {
                 MP4: 'MP4',
                 AVI: 'AVI',
                 MOV: 'MOV',
-                WEBM: 'WEBM',
+                WEBM: 'WEBM'
             },
             resultVideoUrl: '',
-            resultVideoName: '',
+            resultVideoName: ''
         };
     },
     computed: {
         outputName() {
             if (this.file) {
                 const { name } = this.file;
-                let [_, ...noExtname] = name.split('.').reverse();
+                const noExtname = name
+                    .split('.')
+                    .reverse()
+                    .slice(1);
                 return `${noExtname.join('.')}.${this.type.toLowerCase()}`;
             }
             return '';
-        },
+        }
     },
     async mounted() {
         await ffmpeg.load();
@@ -102,7 +104,7 @@ export default {
         async convert() {
             this.loading = true;
             const { name } = this.file;
-            const type = this.type.toLowerCase()
+            const type = this.type.toLowerCase();
             ffmpeg.FS('writeFile', name, await fetchFile(this.file));
             this.resultVideoName = this.outputName;
             await ffmpeg.run('-i', name, this.resultVideoName);
@@ -111,8 +113,8 @@ export default {
                 new Blob([data.buffer], { type: `video/${type}` })
             );
             this.loading = false;
-        },
-    },
+        }
+    }
 };
 </script>
 

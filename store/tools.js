@@ -181,14 +181,10 @@ export const state = () => {
                     name: '时区转换器',
                     path: '/time_change',
                     head: {
-                        keywords: [
-                            '时区转换器',
-                            '时区'
-                        ],
+                        keywords: ['时区转换器', '时区'],
                         description: '时区转换'
                     }
                 }
-
             ]
         },
         {
