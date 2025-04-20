@@ -6,12 +6,12 @@ export const state = () => {
             list: [
                 // 预设的链接保持不变
                 {
-                    name: 'IP查询(ip.sb)',
-                    path: 'https://ip.sb',
-                    external: true,
+                    name: '自定义导航',
+                    path: '/custom_links',
+                    hot: 'recommend',
                     head: {
-                        keywords: ['IP查询', 'IP地址查询', 'ip.sb'],
-                        description: 'IP地址查询工具'
+                        keywords: ['自定义导航', '添加网站', '网页收藏'],
+                        description: '添加自定义网站到导航栏'
                     }
                 },
                 {
@@ -24,12 +24,12 @@ export const state = () => {
                     }
                 },
                 {
-                    name: 'Ping测试(ping.pe)',
-                    path: 'https://ping.pe',
+                    name: 'IP查询(ip.sb)',
+                    path: 'https://ip.sb',
                     external: true,
                     head: {
-                        keywords: ['Ping测试', '网络测试', 'ping.pe'],
-                        description: 'Ping测试工具'
+                        keywords: ['IP查询', 'IP地址查询', 'ip.sb'],
+                        description: 'IP地址查询工具'
                     }
                 },
                 {
@@ -42,12 +42,12 @@ export const state = () => {
                     }
                 },
                 {
-                    name: '自定义导航',
-                    path: '/custom_links',
-                    hot: 'recommend',
+                    name: 'Ping测试(ping.pe)',
+                    path: 'https://ping.pe',
+                    external: true,
                     head: {
-                        keywords: ['自定义导航', '添加网站', '网页收藏'],
-                        description: '添加自定义网站到导航栏'
+                        keywords: ['Ping测试', '网络测试', 'ping.pe'],
+                        description: 'Ping测试工具'
                     }
                 }
             ]
