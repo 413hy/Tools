@@ -24,35 +24,96 @@ async function handleEvent(event) {
           })
         }
       }
+      return new Response('Not Found', { status: 404 })
     }
 
-    // For all other routes, try to serve static assets
+    // Options for serving assets
+    const options = {
+      cacheControl: {
+        browserTTL: 60 * 60 * 24, // 1 day
+        edgeTTL: 60 * 60 * 24 * 365, // 1 year
+        bypassCache: false
+      }
+    }
+
+    let response
     try {
-      return await getAssetFromKV(event)
+      // First try to get the actual file
+      response = await getAssetFromKV(event, options)
     } catch (e) {
-      // If the asset is not found, serve the index.html for SPA routing
-      if (e.status === 404) {
-        const response = await getAssetFromKV(event, {
+      // If file not found, return index.html for client-side routing
+      try {
+        const page = await getAssetFromKV(event, {
+          ...options,
           mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/index.html`, req)
         })
         
-        // Add security headers
-        const headers = new Headers(response.headers)
-        headers.set('X-XSS-Protection', '1; mode=block')
-        headers.set('X-Content-Type-Options', 'nosniff')
-        headers.set('X-Frame-Options', 'DENY')
-        headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-        headers.set('Feature-Policy', "camera 'none'; microphone 'none'")
-
-        return new Response(response.body, {
+        response = new Response(page.body, {
           status: 200,
-          headers
+          headers: new Headers(page.headers)
         })
+      } catch (e) {
+        // If even index.html fails, return a helpful error
+        return new Response(
+          `<!DOCTYPE html>
+          <html>
+            <head>
+              <title>Loading...</title>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0;url=/">
+            </head>
+            <body>
+              <p>Redirecting to homepage...</p>
+              <script>window.location.href = "/";</script>
+            </body>
+          </html>`,
+          {
+            status: 200,
+            headers: {
+              'Content-Type': 'text/html;charset=UTF-8',
+              'Cache-Control': 'no-cache'
+            }
+          }
+        )
       }
-      throw e
     }
+
+    // Add security and caching headers
+    response.headers.set('X-XSS-Protection', '1; mode=block')
+    response.headers.set('X-Content-Type-Options', 'nosniff')
+    response.headers.set('X-Frame-Options', 'DENY')
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+    
+    // Ensure HTML content type for routes
+    if (!response.headers.get('Content-Type') || url.pathname.endsWith('/')) {
+      response.headers.set('Content-Type', 'text/html; charset=UTF-8')
+    }
+
+    return response
   } catch (e) {
-    return new Response(e.message || e.toString(), { status: 500 })
+    // Return a user-friendly error page
+    return new Response(
+      `<!DOCTYPE html>
+      <html>
+        <head>
+          <title>Error</title>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="3;url=/">
+        </head>
+        <body>
+          <h1>Something went wrong</h1>
+          <p>Redirecting to homepage in 3 seconds...</p>
+          <script>setTimeout(() => window.location.href = "/", 3000);</script>
+        </body>
+      </html>`,
+      {
+        status: 500,
+        headers: {
+          'Content-Type': 'text/html;charset=UTF-8',
+          'Cache-Control': 'no-cache'
+        }
+      }
+    )
   }
 }
 
