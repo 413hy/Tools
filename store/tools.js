@@ -24,6 +24,15 @@ export const state = () => {
                     }
                 },
                 {
+                    name: 'IP纯净度(ping0.cc)',
+                    path: 'https://ping0.cc',
+                    external: true,
+                    head: {
+                        keywords: ['ip', '纯净度', 'ping0'],
+                        description: 'IP测试'
+                    }
+                },
+                {
                     name: 'IP查询(ip.sb)',
                     path: 'https://ip.sb',
                     external: true,
