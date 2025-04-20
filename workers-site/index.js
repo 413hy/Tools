@@ -26,8 +26,31 @@ async function handleEvent(event) {
       }
     }
 
-    // Serve static assets
-    return await getAssetFromKV(event)
+    // For all other routes, try to serve static assets
+    try {
+      return await getAssetFromKV(event)
+    } catch (e) {
+      // If the asset is not found, serve the index.html for SPA routing
+      if (e.status === 404) {
+        const response = await getAssetFromKV(event, {
+          mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/index.html`, req)
+        })
+        
+        // Add security headers
+        const headers = new Headers(response.headers)
+        headers.set('X-XSS-Protection', '1; mode=block')
+        headers.set('X-Content-Type-Options', 'nosniff')
+        headers.set('X-Frame-Options', 'DENY')
+        headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+        headers.set('Feature-Policy', "camera 'none'; microphone 'none'")
+
+        return new Response(response.body, {
+          status: 200,
+          headers
+        })
+      }
+      throw e
+    }
   } catch (e) {
     return new Response(e.message || e.toString(), { status: 500 })
   }

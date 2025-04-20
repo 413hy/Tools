@@ -241,7 +241,7 @@ export default {
     },
     generate: {
         fallback: 'index.html',
-        routes: ['/'],
-        subFolders: false // 添加这行，优化 Cloudflare Pages 的部署
+        routes: ['/', '/custom_links'],
+        subFolders: false
     }
 };
