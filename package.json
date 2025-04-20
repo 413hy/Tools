@@ -87,8 +87,8 @@
         "lint"
     ],
     "engines": {
-        "node": ">=16.0.0"
+        "node": "18.17.1"
     },
-    "packageManager": "pnpm@8.7.1"
+    "packageManager": "npm@9.6.7"
 }
 
