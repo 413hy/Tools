@@ -70,7 +70,8 @@
         "@cloudflare/kv-asset-handler": "^0.3.0",
         "wrangler": "^3.22.1",
         "sass": "^1.32.13",
-        "sass-loader": "^10.1.1"
+        "sass-loader": "^10.1.1",
+        "postcss-pxtorem": "^4.0.1"
     },
     "devDependencies": {
         "all-contributors-cli": "^6.24.0",
@@ -82,7 +83,6 @@
         "eslint-plugin-prettier": "3.1.0",
         "eslint-plugin-vue": "^5.2.3",
         "nodemon": "^1.19.4",
-        "postcss-pxtorem": "^4.0.1",
         "pre-commit": "^1.2.2",
         "prettier": "1.14.3"
     },
