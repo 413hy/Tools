@@ -7,18 +7,29 @@ async function handleEvent(event) {
     // Handle API requests for custom tools
     if (url.pathname.startsWith('/api')) {
       if (url.pathname === '/api/tools') {
+        // GET request - retrieve all custom links
         if (event.request.method === 'GET') {
-          // Get all custom tools
           const tools = await TOOLS_DATA.get('custom_tools', { type: 'json' }) || []
           return new Response(JSON.stringify(tools), {
             headers: { 'Content-Type': 'application/json' }
           })
-        } else if (event.request.method === 'POST') {
-          // Add a new custom tool
+        } 
+        // POST request - add new link or update all links
+        else if (event.request.method === 'POST') {
+          const methodOverride = event.request.headers.get('X-HTTP-Method-Override')
           const body = await event.request.json()
-          const tools = await TOOLS_DATA.get('custom_tools', { type: 'json' }) || []
-          tools.push(body)
-          await TOOLS_DATA.put('custom_tools', JSON.stringify(tools))
+
+          // If PUT override, update entire list
+          if (methodOverride === 'PUT') {
+            await TOOLS_DATA.put('custom_tools', JSON.stringify(body))
+          } 
+          // Regular POST, add new link
+          else {
+            const tools = await TOOLS_DATA.get('custom_tools', { type: 'json' }) || []
+            tools.push(body)
+            await TOOLS_DATA.put('custom_tools', JSON.stringify(tools))
+          }
+
           return new Response(JSON.stringify({ success: true }), {
             headers: { 'Content-Type': 'application/json' }
           })

@@ -118,17 +118,23 @@ export default {
             );
         }
     },
-    created() {
-        // 确保 customLinks 存在
-        if (!this.$store.state.customLinks) {
-            this.$store.commit('SET_STORE', {
-                key: 'customLinks',
-                value: []
-            });
+    async created() {
+        // 从 KV 获取数据
+        try {
+            const response = await fetch('/api/tools');
+            if (response.ok) {
+                const data = await response.json();
+                this.$store.commit('SET_STORE', {
+                    key: 'customLinks',
+                    value: data
+                });
+            }
+        } catch (error) {
+            console.error('Failed to fetch custom links:', error);
         }
     },
     methods: {
-        addLink() {
+        async addLink() {
             if (!this.newLink.name || !this.newLink.url) {
                 this.$noty.error('网站名称和地址不能为空');
                 return;
@@ -141,24 +147,44 @@ export default {
                 return;
             }
 
-            const customLinks = [...(this.$store.state.customLinks || [])];
-            customLinks.push({
+            const newLinkData = {
                 name: this.newLink.name,
                 path: this.newLink.url,
                 priority: parseInt(this.newLink.priority) || 0
-            });
+            };
 
-            this.$store.commit('SET_STORE', {
-                key: 'customLinks',
-                value: customLinks
-            });
+            try {
+                // 发送到 KV 存储
+                const response = await fetch('/api/tools', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newLinkData)
+                });
 
-            this.$nextTick(() => {
-                this.newLink.name = '';
-                this.newLink.url = '';
-                this.newLink.priority = 0;
-                this.$noty.success('添加成功');
-            });
+                if (response.ok) {
+                    const customLinks = [...(this.$store.state.customLinks || [])];
+                    customLinks.push(newLinkData);
+
+                    this.$store.commit('SET_STORE', {
+                        key: 'customLinks',
+                        value: customLinks
+                    });
+
+                    this.$nextTick(() => {
+                        this.newLink.name = '';
+                        this.newLink.url = '';
+                        this.newLink.priority = 0;
+                        this.$noty.success('添加成功');
+                    });
+                } else {
+                    this.$noty.error('添加失败，请稍后重试');
+                }
+            } catch (error) {
+                console.error('Failed to add link:', error);
+                this.$noty.error('添加失败，请检查网络连接');
+            }
         },
         editLink(index) {
             const link = this.sortedLinks[index];
@@ -169,7 +195,7 @@ export default {
             };
             this.editingIndex = index;
         },
-        saveEdit(index) {
+        async saveEdit(index) {
             if (!this.editingLink.name || !this.editingLink.url) {
                 this.$noty.error('网站名称和地址不能为空');
                 return;
@@ -190,29 +216,49 @@ export default {
             );
 
             if (realIndex !== -1) {
-                customLinks[realIndex] = {
+                const updatedLink = {
                     name: this.editingLink.name,
                     path: this.editingLink.url,
                     priority: parseInt(this.editingLink.priority) || 0
                 };
 
-                this.$store.commit('SET_STORE', {
-                    key: 'customLinks',
-                    value: customLinks
-                });
+                try {
+                    // 更新 KV 存储
+                    customLinks[realIndex] = updatedLink;
+                    const response = await fetch('/api/tools', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-HTTP-Method-Override': 'PUT'
+                        },
+                        body: JSON.stringify(customLinks)
+                    });
 
-                this.$nextTick(() => {
-                    this.editingIndex = -1;
-                    this.editingLink = null;
-                    this.$noty.success('修改成功');
-                });
+                    if (response.ok) {
+                        this.$store.commit('SET_STORE', {
+                            key: 'customLinks',
+                            value: customLinks
+                        });
+
+                        this.$nextTick(() => {
+                            this.editingIndex = -1;
+                            this.editingLink = null;
+                            this.$noty.success('修改成功');
+                        });
+                    } else {
+                        this.$noty.error('修改失败，请稍后重试');
+                    }
+                } catch (error) {
+                    console.error('Failed to update link:', error);
+                    this.$noty.error('修改失败，请检查网络连接');
+                }
             }
         },
         cancelEdit() {
             this.editingIndex = -1;
             this.editingLink = null;
         },
-        removeLink(index) {
+        async removeLink(index) {
             const customLinks = [...this.$store.state.customLinks];
             const realIndex = customLinks.findIndex(
                 link =>
@@ -221,12 +267,31 @@ export default {
             );
 
             if (realIndex !== -1) {
-                customLinks.splice(realIndex, 1);
-                this.$store.commit('SET_STORE', {
-                    key: 'customLinks',
-                    value: customLinks
-                });
-                this.$noty.success('删除成功');
+                try {
+                    customLinks.splice(realIndex, 1);
+                    // 更新 KV 存储
+                    const response = await fetch('/api/tools', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-HTTP-Method-Override': 'PUT'
+                        },
+                        body: JSON.stringify(customLinks)
+                    });
+
+                    if (response.ok) {
+                        this.$store.commit('SET_STORE', {
+                            key: 'customLinks',
+                            value: customLinks
+                        });
+                        this.$noty.success('删除成功');
+                    } else {
+                        this.$noty.error('删除失败，请稍后重试');
+                    }
+                } catch (error) {
+                    console.error('Failed to delete link:', error);
+                    this.$noty.error('删除失败，请检查网络连接');
+                }
             }
         }
     }
