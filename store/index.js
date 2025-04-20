@@ -1,4 +1,5 @@
 import env from '../env';
+import createPersistedState from 'vuex-persistedstate';
 
 export const state = () => ({
     setting: {
@@ -35,7 +36,12 @@ export const state = () => ({
 
 export const mutations = {
     SET_STORE(state, { key, value }) {
-        state[key] = value;
+        if (key === 'customLinks') {
+            // 确保 customLinks 总是一个数组
+            state[key] = Array.isArray(value) ? value : [];
+        } else {
+            state[key] = value;
+        }
     },
     TOGGLE_DARK(state) {
         state.dark = !state.dark;
@@ -51,3 +57,10 @@ export const mutations = {
         }
     }
 };
+
+export const plugins = [
+    createPersistedState({
+        paths: ['customLinks', 'setting'],
+        storage: window.localStorage
+    })
+];

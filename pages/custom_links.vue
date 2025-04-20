@@ -114,8 +114,17 @@ export default {
         sortedLinks() {
             const links = this.$store.state.customLinks || [];
             return [...links].sort(
-                (a, b) => (b.priority || 0) - (a.priority || 0)
+                (a, b) => (parseInt(b.priority) || 0) - (parseInt(a.priority) || 0)
             );
+        }
+    },
+    created() {
+        // 确保 customLinks 存在
+        if (!this.$store.state.customLinks) {
+            this.$store.commit('SET_STORE', {
+                key: 'customLinks',
+                value: []
+            });
         }
     },
     methods: {
@@ -144,17 +153,19 @@ export default {
                 value: customLinks
             });
 
-            this.newLink.name = '';
-            this.newLink.url = '';
-            this.newLink.priority = 0;
-            this.$noty.success('添加成功');
+            this.$nextTick(() => {
+                this.newLink.name = '';
+                this.newLink.url = '';
+                this.newLink.priority = 0;
+                this.$noty.success('添加成功');
+            });
         },
         editLink(index) {
             const link = this.sortedLinks[index];
             this.editingLink = {
                 name: link.name,
                 url: link.path,
-                priority: link.priority || 0
+                priority: parseInt(link.priority) || 0
             };
             this.editingIndex = index;
         },
@@ -170,7 +181,8 @@ export default {
                 this.$noty.error('网站地址必须以 http:// 或 https:// 开头');
                 return;
             }
-            const customLinks = [...this.$store.state.customLinks];
+
+            const customLinks = [...(this.$store.state.customLinks || [])];
             const realIndex = customLinks.findIndex(
                 link =>
                     link.name === this.sortedLinks[index].name &&
@@ -189,9 +201,11 @@ export default {
                     value: customLinks
                 });
 
-                this.editingIndex = -1;
-                this.editingLink = null;
-                this.$noty.success('修改成功');
+                this.$nextTick(() => {
+                    this.editingIndex = -1;
+                    this.editingLink = null;
+                    this.$noty.success('修改成功');
+                });
             }
         },
         cancelEdit() {
@@ -227,36 +241,40 @@ export default {
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            background-color: var(--theme-bg-light);
-
+            border-bottom: 1px solid var(--border-color);
+            
+            &:last-child {
+                border-bottom: none;
+            }
+            
             .link-info {
+                flex: 1;
+                
                 .link-name {
+                    font-size: 16px;
                     font-weight: bold;
                     margin-bottom: 5px;
                 }
+                
                 .link-url {
-                    color: var(--theme-text-light);
-                    font-size: 0.9em;
+                    color: var(--text-color-secondary);
                     margin-bottom: 5px;
                 }
+                
                 .link-priority {
-                    color: var(--theme-text-lighter);
-                    font-size: 0.8em;
+                    font-size: 12px;
+                    color: var(--text-color-secondary);
                 }
             }
-
+            
             .link-actions {
-                .nya-btn.small {
-                    margin-left: 8px;
-                    padding: 4px 8px;
-                    font-size: 0.9em;
-                }
+                display: flex;
+                gap: 10px;
             }
-
+            
             .edit-form {
                 width: 100%;
+                
                 .actions {
                     display: flex;
                     gap: 10px;
