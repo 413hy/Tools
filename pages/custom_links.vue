@@ -132,7 +132,7 @@ export default {
                 return;
             }
 
-            const customLinks = this.$store.state.customLinks || [];
+            const customLinks = [...(this.$store.state.customLinks || [])];
             customLinks.push({
                 name: this.newLink.name,
                 path: this.newLink.url,

@@ -29,7 +29,7 @@ export const state = () => ({
     welcome: true,
     isMobile: {},
     env: env,
-    customLinks: [],
+    customLinks: [], // 确保有默认值
     syncTime: 0
 });
 
