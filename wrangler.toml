@@ -2,6 +2,7 @@ name = "miku-tools"
 type = "webpack"
 account_id = ""
 workers_dev = true
+compatibility_date = "2024-03-19"
 
 kv_namespaces = [
   { binding = "TOOLS_DATA", id = "1493889de382473ca39ee88983edd7c1" }
