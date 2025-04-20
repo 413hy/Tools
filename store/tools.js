@@ -1,6 +1,58 @@
 export const state = () => {
     const tools = [
         {
+            title: '网页导航',
+            icon: 'globe-outline',
+            list: [
+                // 预设的链接保持不变
+                {
+                    name: 'IP查询(ip.sb)',
+                    path: 'https://ip.sb',
+                    external: true,
+                    head: {
+                        keywords: ['IP查询', 'IP地址查询', 'ip.sb'],
+                        description: 'IP地址查询工具'
+                    }
+                },
+                {
+                    name: 'IT测试(itdog.cn)',
+                    path: 'https://itdog.cn',
+                    external: true,
+                    head: {
+                        keywords: ['IT测试', '网站测速', 'itdog'],
+                        description: 'IT测试工具'
+                    }
+                },
+                {
+                    name: 'Ping测试(ping.pe)',
+                    path: 'https://ping.pe',
+                    external: true,
+                    head: {
+                        keywords: ['Ping测试', '网络测试', 'ping.pe'],
+                        description: 'Ping测试工具'
+                    }
+                },
+                {
+                    name: '站长工具(tool.chinaz.com)',
+                    path: 'https://tool.chinaz.com',
+                    external: true,
+                    head: {
+                        keywords: ['站长工具', 'SEO工具', 'chinaz'],
+                        description: '站长工具集合'
+                    }
+                },
+                {
+                    name: '自定义导航',
+                    path: '/custom_links',
+                    hot: 'recommend',
+                    head: {
+                        keywords: ['自定义导航', '添加网站', '网页收藏'],
+                        description: '添加自定义网站到导航栏'
+                    }
+                }
+            ]
+        },
+        {
             title: '其他工具',
             icon: 'layers-outline',
             list: [
@@ -566,6 +618,7 @@ export const state = () => {
         }
     ];
 
+    // 处理工具的 head 等信息
     tools.forEach(i => {
         i.list.forEach(tool => {
             let head = {

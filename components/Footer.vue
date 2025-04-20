@@ -1,32 +1,14 @@
 <template>
     <div class="vfooter">
-        <a title="QQ群" href="https://jq.qq.com/?_wv=1027&k=5aPVskX" target="_blank" rel="noopener noreferrer">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-QQ" />
-            </svg>
-        </a>
-
-        <a title="Twitter" href="https://twitter.com/Ice_Hazymoon" target="_blank" rel="noopener noreferrer">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-twitter" />
-            </svg>
-        </a>
-        
-        <a title="GitHub" href="https://github.com/Ice-Hazymoon/MikuTools" target="_blank" rel="noopener noreferrer">
+        <a title="GitHub" href="https://github.com/413hy" target="_blank" rel="noopener noreferrer">
             <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-github" />
             </svg>
         </a>
         
-        <a title="Telegram" href="https://t.me/mikutools" target="_blank" rel="noopener noreferrer">
+        <a title="Telegram" href="https://t.me/Yuuheu" target="_blank" rel="noopener noreferrer">
             <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-telegram" />
-            </svg>
-        </a>
-        
-        <a title="微博" href="http://weibo.com/u/3983176694" target="_blank" rel="noopener noreferrer">
-            <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-weibo" />
             </svg>
         </a>
     </div>

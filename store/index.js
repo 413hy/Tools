@@ -35,10 +35,10 @@ export const state = () => ({
     welcome: true,
     isMobile: {},
     env: env,
+    customLinks: [],
     syncTime: 0
 });
 
-const disabledMouseWheel = e => e.stopPropagation();
 export const mutations = {
     SET_STORE(state, n) {
         if (_.isArray(n.value)) {
@@ -74,5 +74,24 @@ export const mutations = {
             });
         }
         state.disabledMouseWheel = type;
+    },
+    
+    UPDATE_CUSTOM_LINKS(state, links) {
+        state.customLinks = links;
+        // 自动保存到本地存储
+        if (process.browser) {
+            localStorage.setItem('miku_custom_links', JSON.stringify(links));
+        }
+    }
+};
+
+export const actions = {
+    nuxtServerInit({ commit }) {
+        if (process.browser) {
+            const savedLinks = localStorage.getItem('miku_custom_links');
+            if (savedLinks) {
+                commit('UPDATE_CUSTOM_LINKS', JSON.parse(savedLinks));
+            }
+        }
     }
 };

@@ -10,9 +10,21 @@
                     :target="$store.state.setting.inNewTab ? '_blank' : '_self'"
                     :to="tool.path"
                     class="nya-btn"
+                    v-if="!tool.external"
                 >
                     {{ tool.name }}
                 </nuxt-link>
+                <a
+                    v-for="(tool, index) in data.data"
+                    v-show="showBtn(tool) && tool.external"
+                    :key="'ext-'+index"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :href="tool.path"
+                    class="nya-btn"
+                >
+                    {{ tool.name }}
+                </a>
             </template>
         </Search>
         
@@ -48,7 +60,7 @@
             >
                 <template v-for="(tool, index2) in item.list">
                     <nuxt-link
-                        v-if="showBtn(tool)"
+                        v-if="showBtn(tool) && !tool.external"
                         :key="index2"
                         :target="$store.state.setting.inNewTab ? '_blank' : '_self'"
                         :title="tool.name"
@@ -58,6 +70,33 @@
                     >
                         {{ tool.name }}
                     </nuxt-link>
+                    <a
+                        v-if="showBtn(tool) && tool.external"
+                        :key="'ext-'+index2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        :title="tool.name"
+                        :href="tool.path"
+                        class="nya-btn"
+                        :class="[tool.hot, {'badge': tool.hot}]"
+                    >
+                        {{ tool.name }}
+                    </a>
+                </template>
+                
+                <!-- 添加自定义链接 -->
+                <template v-if="item.title === '网页导航' && $store.state.customLinks && $store.state.customLinks.length > 0">
+                    <a
+                        v-for="(link, linkIndex) in $store.state.customLinks"
+                        :key="'custom-'+linkIndex"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        :title="link.name"
+                        :href="link.path"
+                        class="nya-btn"
+                    >
+                        {{ link.name }}
+                    </a>
                 </template>
             </nya-container>
         </template>
@@ -79,7 +118,7 @@
                     >{{ $store.state.env.domain }}</a>
                 </li>
                 <li v-if="$store.state.isMobile.any">
-                    如果遇到无法使用或者样式问题，请更换浏览器后重试，推荐使用 Chrome 浏览器，对 iOS 设备兼容性可能不太好
+                    如果遇到无法使用或者样式问题，请更换浏览器后重试，推荐使用 Chrome 浏览器，对 iOS 设备兼容性可能不太
                 </li>
             </ul>
         </nya-container>
