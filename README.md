@@ -3,7 +3,7 @@
 <h1 align="center">Miku Tools</h1>
 <p align="center">一个轻量的工具集合</p>
 <p align="center">
-    <a href="https://github.com/Ice-Hazymoon/MikuTools/blob/master/LICENSE">
+   <a href="https://github.com/Ice-Hazymoon/MikuTools/blob/master/LICENSE">
         <img src="https://yhedesk.dpdns.org/toolssvg" alt="MIT License" />
     </a>
     <a href="https://vuejs.org/">
