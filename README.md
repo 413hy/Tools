@@ -1,10 +1,10 @@
-<p align="center"><img src="./static/icon.png"
+<p align="center"><img src="https://yhedesk.dpdns.org/toolssvg"
         alt="Logo" width="128" height="128" style="max-width: 100%;"></p>
 <h1 align="center">Miku Tools</h1>
 <p align="center">一个轻量的工具集合</p>
 <p align="center">
     <a href="https://github.com/413hy/Tools/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/Ice-Hazymoon/MikuTools.svg" alt="MIT License" />
+        <img src="https://yhedesk.dpdns.org/toolssvg" alt="MIT License" />
     </a>
     <a href="https://vuejs.org/">
         <img src="https://img.shields.io/badge/nuxt.js-v5.x-green.svg" alt="for Nuxt.js 5">
@@ -31,7 +31,7 @@
 
 ## 预览
 
-![preview](./static/preview.png)
+![preview](https://yhedesk.dpdns.org/toolspng)
 
 ## 开发
 
