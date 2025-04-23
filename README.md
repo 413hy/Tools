@@ -3,7 +3,7 @@
 <h1 align="center">Miku Tools</h1>
 <p align="center">一个轻量的工具集合</p>
 <p align="center">
-    <a href="https://github.com/Ice-Hazymoon/MikuTools/blob/master/LICENSE">
+    <a href="https://github.com/413hy/Tools/blob/master/LICENSE">
         <img src="https://img.shields.io/github/license/Ice-Hazymoon/MikuTools.svg" alt="MIT License" />
     </a>
     <a href="https://vuejs.org/">
@@ -21,13 +21,13 @@
 
 如网站出现无法访问的情况，可尝试使用备用域名
 
-> [https://tools.miku.ac](https://tools.miku.ac)
+> [https://yhe.f5.si](https://yhe.f5.si)
 
 ## 介绍
 
-本项目是 [https://miku.tools](https://miku.tools) 的开源版本，保留了部分无需后端的功能。
+本项目是 [https://tools.085580.xyz](https://tools.085580.xyz) 的开源版本，保留了部分无需后端的功能。
 
-> [https://miku.tools](https://miku.tools)
+> [https://tools.085580.xyz](https://tools.085580.xyz)
 
 ## 预览
 
@@ -47,6 +47,17 @@ yarn install
 yarn generate
 ```
 
+## 部署至cloudflare workers构建命令
+
+```bash
+npx wrangler deploy
+```
+#### KV空间
+
+```bash
+TOOLS_DATA
+```
+
 ## 其他
 
 Q: 我应该如何添加新功能？  
@@ -63,8 +74,8 @@ A: Vue 全家桶 + [Nuxt.js](https://zh.nuxtjs.org/)
 
 ## 更新
 
-本仓库仅供一个开源版本的备份，并不用于纪录提交纪录等，当[主站](https://miku.tools)更新到一定程度上的稳定版本时，才会重新更新该仓库
+本仓库仅供一个开源版本的备份，并不用于纪录提交纪录等，当[主站](https://085580.xyz)更新到一定程度上的稳定版本时，才会重新更新该仓库
 
 ## License
 
-[MIT](https://github.com/Ice-Hazymoon/MikuTools/blob/master/LICENSE)
+[MIT](https:/github.com/413hy/Tools/blob/master/LICENSE)
