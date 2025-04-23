@@ -1,4 +1,4 @@
-<p align="center"><img src="https://yhedesk.dpdns.org/toolssvg"
+<p align="center"><img src="./static/icon.png"
         alt="Logo" width="128" height="128" style="max-width: 100%;"></p>
 <h1 align="center">Miku Tools</h1>
 <p align="center">一个轻量的工具集合</p>
