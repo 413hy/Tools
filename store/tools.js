@@ -15,11 +15,11 @@ export const state = () => {
                     }
                 },
                 {
-                    name: '网站测试(itdog.cn)',
+                    name: 'IT测试(itdog.cn)',
                     path: 'https://itdog.cn',
                     external: true,
                     head: {
-                        keywords: ['IP测试', '网站测速', 'itdog'],
+                        keywords: ['IT测试', '网站测速', 'itdog'],
                         description: 'IT测试工具'
                     }
                 },
@@ -33,11 +33,11 @@ export const state = () => {
                     }
                 },
                 {
-                    name: 'IPv4/6查询(ip.sb)',
+                    name: 'IP查询(ip.sb)',
                     path: 'https://ip.sb',
                     external: true,
                     head: {
-                        keywords: ['IPv4', 'IPv6', 'ip.sb'],
+                        keywords: ['IP查询', 'IP地址查询', 'ip.sb'],
                         description: 'IP地址查询工具'
                     }
                 },
@@ -51,11 +51,11 @@ export const state = () => {
                     }
                 },
                 {
-                    name: '全国测试(ipw.cn)',
+                    name: 'IP检测(ipw.cn)',
                     path: 'https://ipw.cn',
                     external: true,
                     head: {
-                        keywords: ['ip', '域名', '全国'],
+                        keywords: ['ip', '域名', 'chinaz'],
                         description: 'ip检测'
                     }
                 },
