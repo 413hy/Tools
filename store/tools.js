@@ -15,7 +15,7 @@ export const state = () => {
                     }
                 },
                 {
-                    name: '全国网络测试(itdog.cn)',
+                    name: 'IT测试(itdog.cn)',
                     path: 'https://itdog.cn',
                     external: true,
                     head: {
@@ -33,7 +33,7 @@ export const state = () => {
                     }
                 },
                 {
-                    name: 'IPv4/6查询(ip.sb)',
+                    name: 'IP查询(ip.sb)',
                     path: 'https://ip.sb',
                     external: true,
                     head: {
@@ -51,7 +51,7 @@ export const state = () => {
                     }
                 },
                 {
-                    name: '域名检测(ipw.cn)',
+                    name: 'IP检测(ipw.cn)',
                     path: 'https://ipw.cn',
                     external: true,
                     head: {
