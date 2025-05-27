@@ -58,7 +58,7 @@ export default {
     },
     computed: {
         url() {
-            return `${process.env.url}/o/search_help?s=${
+            return `${window.location.origin}/o/search_help?s=${
                 this.type
             }&k=${Buffer.from(this.keyword).toString('base64')}`;
         }

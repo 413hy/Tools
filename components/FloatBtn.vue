@@ -93,10 +93,10 @@ export default {
                 description = description[0].description;
             }
             return {
-                url: process.env.url + this.$route.path,
+                url: window.location.origin + this.$route.path,
                 title: this.$store.state.currentTool.name,
-                content: description,
-                pic: process.env.url + '/icon.png'
+                desc: this.$store.state.currentTool.head.description,
+                pic: window.location.origin + '/icon.png'
             };
         }
     },
@@ -121,7 +121,7 @@ export default {
             });
         },
         viewInPhone() {
-            const QRData = QR.imageSync(process.env.url + this.$route.path, {
+            const QRData = QR.imageSync(window.location.origin + this.$route.path, {
                 type: 'jpg',
                 size: 10,
                 margin: 0

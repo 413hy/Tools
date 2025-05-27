@@ -186,7 +186,7 @@ export default {
             };
         },
         share() {
-            return `${process.env.url}${this.$route.path}?k=${Buffer.from(
+            return `${window.location.origin}${this.$route.path}?k=${Buffer.from(
                 this.date
             ).toString('base64')}`;
         }

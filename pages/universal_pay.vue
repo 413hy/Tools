@@ -94,7 +94,7 @@ export default {
                 this.qrcodeUrl = '';
 
                 this.url = `${
-                    process.env.url
+                    window.location.origin
                 }/o/universal_pay_view?data=${Buffer.from(
                     JSON.stringify(this.data)
                 ).toString('base64')}`;
