@@ -22,51 +22,6 @@ export const state = () => {
                         keywords: ['IP测试', '网站测速', 'itdog'],
                         description: 'IT测试工具'
                     }
-                },
-                {
-                    name: 'IP纯净度(ping0.cc)',
-                    path: 'https://ping0.cc',
-                    external: true,
-                    head: {
-                        keywords: ['ip', '纯净度', 'ping0'],
-                        description: 'IP测试'
-                    }
-                },
-                {
-                    name: 'IPv4/6查询(ip.sb)',
-                    path: 'https://ip.sb',
-                    external: true,
-                    head: {
-                        keywords: ['IPv4', 'IPv6', 'ip.sb'],
-                        description: 'IP地址查询工具'
-                    }
-                },
-                {
-                    name: '站长工具(tool.chinaz.com)',
-                    path: 'https://tool.chinaz.com',
-                    external: true,
-                    head: {
-                        keywords: ['站长工具', 'SEO工具', 'chinaz'],
-                        description: '站长工具集合'
-                    }
-                },
-                {
-                    name: '全国测试(ipw.cn)',
-                    path: 'https://ipw.cn',
-                    external: true,
-                    head: {
-                        keywords: ['ip', '域名', '全国'],
-                        description: 'ip检测'
-                    }
-                },
-                {
-                    name: 'Ping测试(ping.pe)',
-                    path: 'https://ping.pe',
-                    external: true,
-                    head: {
-                        keywords: ['Ping测试', '网络测试', 'ping.pe'],
-                        description: 'Ping测试工具'
-                    }
                 }
             ]
         },
