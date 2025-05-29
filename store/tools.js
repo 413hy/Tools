@@ -637,9 +637,9 @@ export const state = () => {
 
 // 添加 getters 来处理自定义导航的合并
 export const getters = {
-    getTools: (state) => {
+    getTools: (state, getters, rootState) => {
         const tools = [...state];
-        const customLinks = state.customLinks || [];
+        const customLinks = rootState.customLinks || [];
         
         if (customLinks.length > 0) {
             const webNavIndex = tools.findIndex(tool => tool.title === '网页导航');

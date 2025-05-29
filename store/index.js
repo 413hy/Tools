@@ -37,8 +37,13 @@ export const state = () => ({
 export const mutations = {
     SET_STORE(state, { key, value }) {
         if (key === 'customLinks') {
-            // 确保 customLinks 总是一个数组
-            state[key] = Array.isArray(value) ? value : [];
+            // 确保 customLinks 总是一个数组，并且每个项目都有正确的结构
+            state[key] = Array.isArray(value) ? value.map(link => ({
+                name: link.name,
+                path: link.path,
+                priority: parseInt(link.priority) || 0,
+                external: true
+            })) : [];
         } else {
             state[key] = value;
         }
