@@ -76,7 +76,7 @@
                 <!-- 添加自定义链接 -->
                 <template v-if="item.title === '网页导航' && $store.state.customLinks && $store.state.customLinks.length > 0">
                     <a
-                        v-for="(link, linkIndex) in $store.state.customLinks"
+                        v-for="(link, linkIndex) in sortedCustomLinks"
                         :key="'custom-'+linkIndex"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -168,6 +168,10 @@ export default {
                 arr = arr.concat(tool.list);
             });
             return arr;
+        },
+        sortedCustomLinks() {
+            const links = this.$store.state.customLinks || [];
+            return [...links].sort((a, b) => (parseInt(b.priority) || 0) - (parseInt(a.priority) || 0));
         }
     },
     methods: {
