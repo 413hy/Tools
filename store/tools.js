@@ -631,5 +631,28 @@ export const state = () => {
             }
         });
     });
+
     return tools;
+};
+
+// 添加 getters 来处理自定义导航的合并
+export const getters = {
+    getTools: (state) => {
+        const tools = [...state];
+        const customLinks = state.customLinks || [];
+        
+        if (customLinks.length > 0) {
+            const webNavIndex = tools.findIndex(tool => tool.title === '网页导航');
+            if (webNavIndex !== -1) {
+                // 将自定义链接添加到网页导航列表
+                tools[webNavIndex].list = [
+                    ...tools[webNavIndex].list.filter(item => item.name === '自定义导航'),
+                    ...customLinks.sort((a, b) => (parseInt(b.priority) || 0) - (parseInt(a.priority) || 0)),
+                    ...tools[webNavIndex].list.filter(item => item.name !== '自定义导航')
+                ];
+            }
+        }
+        
+        return tools;
+    }
 };
